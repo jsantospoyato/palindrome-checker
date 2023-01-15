@@ -1,11 +1,29 @@
+/**
+ * Indicates if the passed string is a palindrome
+ * @param {*} str 
+ * @returns 
+ */
 function palindrome(str) {
     // We get the string with only alphanumeric chars and without spacing or undercase
-    var simp = str
+    let simp = str
         .toLowerCase()
         .replace(/[^0-9a-z]/gi, '');
 
     // If the resulting string length is odd
-    var len = simp.length;
+    const len = simp.length;
+    simp = evenize(simp);
+
+    // With a string of an even length, we compare each pair of chars
+    for (var i = 0; i < len / 2; i++) if (simp[i] != simp[len - 1 - i]) return false;
+
+    // If none of the pairs was different, that means we got a palindrome
+    return true;
+}
+
+/**
+ * Return an even string, transforming it if necessary
+ */
+function evenize(simp){
     if (len % 2 != 0) {
         // We obtain the new string without the middle char i.e. ('y' in eye doesn't have pair)
         simp = simp
@@ -16,12 +34,9 @@ function palindrome(str) {
         len--;
     }
 
-    // With a string of an even length, we compare each pair of chars
-    for (var i = 0; i < len / 2; i++) {
-        // Assuming is a palindrome until proven false
-        if (simp[i] != simp[len - 1 - i]) return false;
-    }
-
-    // If none of the pairs was different, that means we got a palindrome
-    return true;
+    return simp;
 }
+
+// Execution examples with non-palindrome and palindrome
+palindromeChecker("hello");
+palindromeChecker("ey e");
