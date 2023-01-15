@@ -38,5 +38,6 @@ function evenize(simp){
 }
 
 // Execution examples with non-palindrome and palindrome
-palindromeChecker("hello");
-palindromeChecker("ey e");
+console.log(palindrome('eye'));
+console.log(palindrome('hello'));
+console.log(palindrome('race car'));
